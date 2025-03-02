@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.referencedLibraries": [
+        "lib\\HumidityReader.jar",
+        "c:\\Users\\vnmsk\\OneDrive\\Desktop\\Assignment1\\weatherstation800g2\\lib\\HumidityReader.jar"
+    ]
+}

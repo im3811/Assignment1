@@ -51,9 +51,8 @@ public class JavaFXUI extends Application implements Observer {
 
     for (MeasurementUnit unit : MeasurementUnit.valuesOf(SensorType.TEMPERATURE)) {
         tempBox.getChildren().add(createTemperatureDisplay(unit.toString()));
-      }
+    }
     
-
     tempDisplay.getChildren().addAll(tempTitle, tempBox);
 
     VBox pressureDisplay = new VBox(10);
@@ -69,14 +68,24 @@ public class JavaFXUI extends Application implements Observer {
 
     pressureDisplay.getChildren().addAll(pressureTitle, pressureBox);
 
+    VBox humidityDisplay = new VBox(10);
+    humidityDisplay.setAlignment(Pos.CENTER);
+    HBox humidityBox = new HBox(20);
+    humidityBox.setAlignment(Pos.CENTER);
+    Label humidityTitle = new Label("Humidity");
+    humidityTitle.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+    
+    for (MeasurementUnit unit : MeasurementUnit.valuesOf(SensorType.HUMIDITY)) {
+        humidityBox.getChildren().add(createTemperatureDisplay(unit.toString()));
+    }
 
-    mainBox.getChildren().addAll(tempDisplay, pressureDisplay);
+    humidityDisplay.getChildren().addAll(humidityTitle, humidityBox);
+
+    mainBox.getChildren().addAll(tempDisplay, pressureDisplay, humidityDisplay);
     Scene scene = new Scene(mainBox, 600, 400);
     primaryStage.setScene(scene);
     primaryStage.show();
-
-
-  }
+}
 
 
   @Override

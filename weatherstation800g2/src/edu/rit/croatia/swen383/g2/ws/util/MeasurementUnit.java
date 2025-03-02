@@ -8,7 +8,8 @@ public enum MeasurementUnit {
     KELVIN(SensorType.TEMPERATURE, 1.0, 0.0), CELSIUS(SensorType.TEMPERATURE, 1.0, -27315.0), 
     FAHRENHEIT(SensorType.TEMPERATURE, 1.8, -45967.0),
 
-    INHG(SensorType.PRESSURE, 1.0, 0.0), MBAR(SensorType.PRESSURE, 33.864, 0.0);
+    INHG(SensorType.PRESSURE, 1.0, 0.0), PCT(SensorType.HUMIDITY, 1.0, 0.0), MBAR(SensorType.PRESSURE, 33.864, 0.0);
+    
 
     private final SensorType type;
     private final double cf1;
