@@ -22,7 +22,7 @@ public class SwingUI implements Observer {
   private void setupUI() {
     JFrame frame = new JFrame("Weather Station");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    JPanel mainPanel = new JPanel(new GridLayout(3, 1, 10, 10)); 
+    JPanel mainPanel = new JPanel(new GridLayout(2, 1, 10, 10));
     mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
     JPanel tempPanel = new JPanel(new GridLayout(1, 3, 5, 5));
@@ -34,21 +34,14 @@ public class SwingUI implements Observer {
     for (MeasurementUnit unit : MeasurementUnit.valuesOf(SensorType.PRESSURE)) {
       pressurePanel.add(createPanel(unit));
     }
-   
-    JPanel humidityPanel = new JPanel(new GridLayout(1, 1, 5, 5));
-    for (MeasurementUnit unit : MeasurementUnit.valuesOf(SensorType.HUMIDITY)) {
-      humidityPanel.add(createPanel(unit));
-    }
 
     mainPanel.add(tempPanel);
     mainPanel.add(pressurePanel);
-    mainPanel.add(humidityPanel); 
-    
     frame.add(mainPanel);
     frame.pack();
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
-}
+  }
 
   private JLabel createLabel(String title) {
     JLabel label = new JLabel(title, SwingConstants.CENTER);

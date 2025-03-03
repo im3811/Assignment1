@@ -12,9 +12,8 @@ public class TextUI implements Observer {
   }
 
   @Override
-public void update() {
+  public void update() {
     System.out.println("\nCurrent readings:");
-    
     System.out.println("Temperature:");
     System.out.println("KELVIN: " + String.format("%.2f", station.getReading(MeasurementUnit.KELVIN)));
     System.out.println("CELSIUS: " + String.format("%.2f", station.getReading(MeasurementUnit.CELSIUS)));
@@ -23,9 +22,6 @@ public void update() {
     System.out.println("\nPressure:");
     System.out.println("INHG: " + String.format("%.2f", station.getReading(MeasurementUnit.INHG)));
     System.out.println("MBAR: " + String.format("%.2f", station.getReading(MeasurementUnit.MBAR)));
-    
-    System.out.println("\nHumidity:");
-    System.out.println("PCT: " + String.format("%.2f", station.getReading(MeasurementUnit.PCT)) + "%");
-}
+  }
 }
 

@@ -1,24 +1,26 @@
-package edu.rit.croatia.swen383.g2.ws;
 
+package edu.rit.croatia.swen383.g2.ws;
 import java.util.EnumMap;
 import java.util.Map;
+
 import edu.rit.croatia.swen383.g2.ws.observer.Observer;
 import edu.rit.croatia.swen383.g2.ws.sensor.Sensor;
 import edu.rit.croatia.swen383.g2.ws.sensor.SensorFactory;
 import edu.rit.croatia.swen383.g2.ws.ui.UIFactory;
-import edu.rit.croatia.swen383.g2.ws.util.SensorType; //Refactored
+import edu.rit.croatia.swen383.g2.ws.util.SensorType;
 
 public class WeatherStationRunner {
   public static void main(String[] args) {
+
     SensorFactory sensorFactory = new SensorFactory();
-    
+
     Map<SensorType, Sensor> sensorMap = new EnumMap<>(SensorType.class);
-    
+
     for (SensorType type : SensorType.values()) {
       Sensor sensor = sensorFactory.getSensor(type);
       sensorMap.put(type, sensor);
     }
-    
+
     WeatherStation station = new WeatherStation(sensorMap);
 
     UIFactory uiFactory = new UIFactory(station);
