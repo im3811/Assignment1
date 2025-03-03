@@ -26,7 +26,7 @@ public class JavaFXUI extends Application implements Observer {
   private static JavaFXUI instance;
   private Stage stage;
 
-  public JavaFXUI(WeatherStation station ) {
+  public JavaFXUI(WeatherStation station) {
     this.station = station;
     labelMap = new EnumMap<>(MeasurementUnit.class);
     instance = this;
@@ -36,7 +36,6 @@ public class JavaFXUI extends Application implements Observer {
     });
   }
 
-  
   private void setupUI(Stage primaryStage) {
     primaryStage.setTitle("Weather Station");
     VBox mainBox = new VBox(20);
@@ -50,9 +49,8 @@ public class JavaFXUI extends Application implements Observer {
     tempTitle.setStyle("-fx-font-size: 20px; -fx-font-weight: bold");
 
     for (MeasurementUnit unit : MeasurementUnit.valuesOf(SensorType.TEMPERATURE)) {
-        tempBox.getChildren().add(createTemperatureDisplay(unit.toString()));
-      }
-    
+      tempBox.getChildren().add(createTemperatureDisplay(unit.toString()));
+    }
 
     tempDisplay.getChildren().addAll(tempTitle, tempBox);
 
@@ -62,25 +60,35 @@ public class JavaFXUI extends Application implements Observer {
     pressureBox.setAlignment(Pos.CENTER);
     Label pressureTitle = new Label("Pressure");
     pressureTitle.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
-    
+
     for (MeasurementUnit unit : MeasurementUnit.valuesOf(SensorType.PRESSURE)) {
-        pressureBox.getChildren().add(createTemperatureDisplay(unit.toString()));
+      pressureBox.getChildren().add(createTemperatureDisplay(unit.toString()));
     }
 
     pressureDisplay.getChildren().addAll(pressureTitle, pressureBox);
 
+    VBox humidityDisplay = new VBox(10);
+    humidityDisplay.setAlignment(Pos.CENTER);
+    HBox humidityBox = new HBox(20);
+    humidityBox.setAlignment(Pos.CENTER);
+    Label humidityTitle = new Label("Humidity");
+    humidityTitle.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
 
-    mainBox.getChildren().addAll(tempDisplay, pressureDisplay);
+    for (MeasurementUnit unit : MeasurementUnit.valuesOf(SensorType.HUMIDITY)) {
+      humidityBox.getChildren().add(createTemperatureDisplay(unit.toString()));
+    }
+
+    humidityDisplay.getChildren().addAll(humidityTitle, humidityBox);
+
+    mainBox.getChildren().addAll(tempDisplay, pressureDisplay, humidityDisplay);
     Scene scene = new Scene(mainBox, 600, 400);
     primaryStage.setScene(scene);
     primaryStage.show();
-
-
   }
 
-
   @Override
-  public void start(Stage primaryStage) {}
+  public void start(Stage primaryStage) {
+  }
 
   public VBox createTemperatureDisplay(String title) {
     Label titleLabel = new Label(title);
@@ -94,15 +102,15 @@ public class JavaFXUI extends Application implements Observer {
     return display;
   }
 
- public void update() {
-  Platform.runLater(() -> {
-    for (MeasurementUnit unit : MeasurementUnit.values()) {
-      Label label = labelMap.get(unit);
-      if (label != null) {
+  public void update() {
+    Platform.runLater(() -> {
+      for (MeasurementUnit unit : MeasurementUnit.values()) {
+        Label label = labelMap.get(unit);
+        if (label != null) {
           label.setText(String.format("%.2f", station.getReading(unit)));
+        }
       }
-    }
-  });
- }
+    });
+  }
 
 }

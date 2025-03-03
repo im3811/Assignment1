@@ -22,6 +22,8 @@ public class TextUI implements Observer {
     System.out.println("\nPressure:");
     System.out.println("INHG: " + String.format("%.2f", station.getReading(MeasurementUnit.INHG)));
     System.out.println("MBAR: " + String.format("%.2f", station.getReading(MeasurementUnit.MBAR)));
+
+    System.out.println("\nHumidity:");
+    System.out.println("PCT: " + String.format("%.2f", station.getReading(MeasurementUnit.PCT)) + "%");
   }
 }
-

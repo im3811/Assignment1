@@ -1,14 +1,17 @@
-
 package edu.rit.croatia.swen383.g2.ws.util;
+
 import java.util.List;
 import java.util.Arrays;
 
-
 public enum MeasurementUnit {
-    KELVIN(SensorType.TEMPERATURE, 1.0, 0.0), CELSIUS(SensorType.TEMPERATURE, 1.0, -27315.0), 
+    KELVIN(SensorType.TEMPERATURE, 1.0, 0.0),
+    CELSIUS(SensorType.TEMPERATURE, 1.0, -27315.0),
     FAHRENHEIT(SensorType.TEMPERATURE, 1.8, -45967.0),
 
-    INHG(SensorType.PRESSURE, 1.0, 0.0), MBAR(SensorType.PRESSURE, 33.864, 0.0);
+    INHG(SensorType.PRESSURE, 1.0, 0.0),
+    MBAR(SensorType.PRESSURE, 33.864, 0.0),
+
+    PCT(SensorType.HUMIDITY, 1.0, 0.0); // New unit for humidity
 
     private final SensorType type;
     private final double cf1;
@@ -20,14 +23,13 @@ public enum MeasurementUnit {
         this.cf2 = cf2;
     }
 
-    public double get(int reading){
+    public double get(int reading) {
         return (reading * cf1 + cf2) / 100.0;
     }
 
-
-    public static List<MeasurementUnit> valuesOf(SensorType sensorType){
+    public static List<MeasurementUnit> valuesOf(SensorType sensorType) {
         return Arrays.stream(values())
-            .filter(unit -> unit.type == sensorType)
-            .toList();
+                .filter(unit -> unit.type == sensorType)
+                .toList();
     }
 }

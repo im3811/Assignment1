@@ -14,11 +14,10 @@ public class SensorFactory {
   private void createSensors() {
     sensors.put(SensorType.TEMPERATURE, new TemperatureSensor());
     sensors.put(SensorType.PRESSURE, new PressureSensor());
+    sensors.put(SensorType.HUMIDITY, new HumiditySensor());
   }
 
   public Sensor getSensor(SensorType type) {
     return sensors.get(type);
   }
-
-  
 }
